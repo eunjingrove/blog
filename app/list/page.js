@@ -13,6 +13,7 @@ export default async function List() {
                 <Link href={'/detail/'+ v._id}>
                   <h4>{v.title}</h4>
                 </Link>
+                <Link href={'/edit/' + v._id}>수정✏️</Link>
                 <DetailLink />
                 <p>{v.content}</p>
             </div>
