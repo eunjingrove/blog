@@ -13,9 +13,18 @@ export default function ListItem({result}) {
                 </Link>
                 <Link href={'/edit/' + v._id}>✏️</Link>
                 <span onClick={() => {
-                    fetch('/api/test').
-                    then(() =>{
-                        console.log(123123)
+                    fetch('/api/post/delete', {method : 'DELETE', body: v._id})
+                    .then((r) => {
+                        if (r.status == 200) {
+                            return r.json();
+                        } else {
+                            // 서버 에러 시 실행할 코드
+                        }
+                    })
+                    .then((result) => {
+                        // 성공 시 실행할 코드
+                    }).catch((error) => {
+                        console.log(error)
                     })
                 }}>🗑️</span>
                 <p>{v.content}</p>
