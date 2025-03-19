@@ -1,6 +1,8 @@
 import { connectDB } from "@/util/database"
 import ListItem from "./ListItem"
 
+export const revalidate = 20
+
 export const dynamic = 'force-dynamic'
 
 export default async function List() {
