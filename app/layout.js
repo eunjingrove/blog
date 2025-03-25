@@ -3,6 +3,7 @@ import Link from "next/link";
 import LoginBtn from "./LoginBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import LogoutBtn from "./LogoutBtn";
 
 export const metadata = {
   title: "Create Next App",
@@ -18,9 +19,9 @@ export default async function RootLayout({ children }) {
       <div className="navbar"> 
         <Link href="/" className="logo">Appleforum</Link> 
         <Link href="/list">List</Link> 
-        <LoginBtn />
+        {/* <LoginBtn /> */}
         {
-          session !== null ? <LoginBtn/> : console.log('로그아웃')
+          session ? <LogoutBtn /> : <LoginBtn />
         }
       </div>  
         {children}

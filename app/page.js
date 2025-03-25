@@ -10,3 +10,4 @@ export default async function Home() {
     <div>안녕하세요</div>
   );
 }
+
