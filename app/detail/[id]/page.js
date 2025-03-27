@@ -1,5 +1,6 @@
 import { connectDB } from "@/util/database"
 import { ObjectId } from "mongodb"
+import Comment from "./Comment"
 
 export default async function Detail(props) {
     const db = (await connectDB).db("blog")
@@ -7,8 +8,9 @@ export default async function Detail(props) {
     return (
         <div>
             <h4>상세페이지</h4>
-            <h4>글제목</h4>
-            <p>글내용</p>
+            <h4>{result.title}</h4>
+            <p>{result.content}</p>
+            <Comment/>
         </div>
     )
 }
