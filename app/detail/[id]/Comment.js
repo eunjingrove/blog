@@ -6,7 +6,10 @@ export default function Comment(props) {
     let [comment, setComment] = useState('')
 
     useEffect(() => {
-        fetch()
+        fetch('/api/comment/list?id='+props._id).then(r => r.json())
+        .then((result)=> {
+
+        })
     },[])
 
     return (
