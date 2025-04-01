@@ -4,11 +4,12 @@ import { useEffect, useState } from "react"
 
 export default function Comment(props) {
     let [comment, setComment] = useState('')
+    let [data, setData] = useState([]) 
 
     useEffect(() => {
         fetch('/api/comment/list?id='+props._id).then(r => r.json())
         .then((result)=> {
-            console.log(result)
+            setData(result)
         })
     },[])
 
