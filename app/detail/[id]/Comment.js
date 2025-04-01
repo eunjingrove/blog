@@ -8,7 +8,7 @@ export default function Comment(props) {
     useEffect(() => {
         fetch('/api/comment/list?id='+props._id).then(r => r.json())
         .then((result)=> {
-
+            console.log(result)
         })
     },[])
 
