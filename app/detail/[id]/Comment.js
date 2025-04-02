@@ -7,7 +7,7 @@ export default function Comment(props) {
     let [data, setData] = useState([]) 
 
     useEffect(() => {
-        fetch('/api/comment/list?id='+props._id).then(r => r.json())
+        fetch('/api/comment/list?id='+ props._id).then(r => r.json())
         .then((result)=> {
             setData(result)
         })
@@ -15,13 +15,25 @@ export default function Comment(props) {
 
     return (
     <div>
-        <div>댓글 목록</div>
+        <hr></hr>
+        {
+            data.length > 0 ?
+            data.map((a, i) => 
+                    <p key={i}>{a.content}</p>
+            )
+            : '로딩중'
+        }
         <input onChange={(e) => {setComment(e.target.value)}} />
         <button onClick={() =>{
-            console.log(comment)
+            if(!comment.trim()) return;
             fetch('/api/comment/new', {
                 method : 'POST',
-                body : JSON.stringify({comment : comment, _id : props._id})})
+                body : JSON.stringify({comment : comment, _id : props._id})
+            })
+            .then(() => {
+                setData(prev => [...prev, {content: comment, parent: props._id}])
+                setComment('')
+            })
         }}>전송</button>
     </div>
     )
