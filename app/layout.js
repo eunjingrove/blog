@@ -4,6 +4,7 @@ import LoginBtn from "./LoginBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import LogoutBtn from "./LogoutBtn";
+import {cookies} from 'next/headers'
 
 export const metadata = {
   title: "Create Next App",
@@ -12,7 +13,10 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions)
-  console.log(session)
+  
+  let res = cookies().get('name')
+  console.log(res)
+
   return (
     <html lang="en">
       <body>
