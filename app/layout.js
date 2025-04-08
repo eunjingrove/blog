@@ -27,6 +27,7 @@ export default async function RootLayout({ children }) {
         {
           session ? <LogoutBtn /> : <LoginBtn />
         }
+        <span>🌙</span>
       </div>  
         {children}
       </body>
