@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import LogoutBtn from "./LogoutBtn";
 import {cookies} from 'next/headers'
+import DarkMode from "./DarkMode";
 
 export const metadata = {
   title: "Create Next App",
@@ -14,20 +15,19 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions)
   
-  let res = cookies().get('name')
-  console.log(res)
+  let cookieStore = await cookies();
+  let res = cookieStore.get('mode')
 
   return (
     <html lang="en">
-      <body>
+      <body className= {res != undefined && res.value == 'dark' ? "dark-mode" : ""}>
       <div className="navbar"> 
         <Link href="/" className="logo">Appleforum</Link> 
         <Link href="/list">List</Link> 
-        {/* <LoginBtn /> */}
         {
           session ? <LogoutBtn /> : <LoginBtn />
         }
-        <span>🌙</span>
+        <DarkMode/>
       </div>  
         {children}
       </body>
