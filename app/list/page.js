@@ -7,9 +7,15 @@ export default async function List() {
     const db = (await connectDB).db('blog')
     let result = await db.collection('post').find().toArray()
 
+    
+    let serializedResult = result.map((item) => ({
+      ...item,
+      _id: item._id.toString(),
+    }))
+
     return (
       <div className="list-bg">
-        <ListItem result={result} />
+        <ListItem result={serializedResult} />
       </div>
     )
   } 
