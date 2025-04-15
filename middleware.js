@@ -3,14 +3,13 @@ import { NextResponse } from 'next/server'
 
 export async function middleware(request) {
     const session = await getToken({ req: request })
-    console.log(session)
   
     // 로그인 체크
-    if (request.nextUrl.pathname.startsWith('/write')) {
-      if (session == null) {
-        return NextResponse.redirect(new URL('http://localhost:3000/api/auth/signin'))
-      }
-    }
+    // if (request.nextUrl.pathname.startsWith('/write')) {
+    //   if (session == null) {
+    //     return NextResponse.redirect(new URL('http://localhost:3000/api/auth/signin'))
+    //   }
+    // }
   
     // /list 요청 로그
     if (request.nextUrl.pathname.startsWith('/list')) {
